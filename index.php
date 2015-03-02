@@ -29,7 +29,7 @@
 </head>
 
 <body>
-<header class="navbar navbar-default navbar-inverse navbar-static-top" id="top" role="banner"
+<header class="navbar navbar-default navbar-static-top" id="top" role="banner"
         style="margin-bottom: -20px;">
   <div class="container">
     <div class="navbar-header">
@@ -41,7 +41,7 @@
       </button>
     <a class="navbar-brand" href="#">4get-me-not</a>
     </div>
-    <nav class="collapse navbar-collapse navbar-inverse">
+    <nav class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu<strong class="caret"></strong></a>
@@ -54,15 +54,22 @@
             </li>
           </ul>
          </li>
-      </ul>
+	 <li>
+           <a href="#">About</a>
+         </li>
+      </ul> <!--
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" />
         </div> <button type="submit" class="btn btn-default">Search Tasks</button>
-      </form>
+      </form> -->
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="login.php">Sign In</a>
+          <div class="btn-toolbar">
+            <button type="submit" style="background-color: #1E90FF; color: white" 
+                    class="navbar-btn btn btn-default">Sign In</button>
+            <button type="submit" style="background-color: #D3D3D3;" 
+                    class="navbar-btn btn btn-default">Create Account</button>
         </li>
       </ul>
     </nav>
