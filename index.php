@@ -29,7 +29,8 @@
 </head>
 
 <body>
-<header class="navbar navbar-default navbar-inverse navbar-static-top" id="top" role="banner">
+<header class="navbar navbar-default navbar-inverse navbar-static-top" id="top" role="banner"
+        style="margin-bottom: -20px;">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
