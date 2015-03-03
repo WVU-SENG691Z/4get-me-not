@@ -39,7 +39,6 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-    <a class="navbar-brand" href="#">4get-me-not</a>
     </div>
     <nav class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
@@ -92,12 +91,19 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
       <h2>
-       Task Reminders
+        Features
       </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h3>
+       Task Reminders
+      </h3>
       <p>
-         We can remind you of a task!!
+         We can remind you of a task and let you blah blah do stuff blah blah
        </p>
        <p>
         <a class="btn btn-primary" href="#">View details</a>
@@ -106,11 +112,11 @@
 <!--  </div>
   <div class="row"> -->
     <div class="col-md-4">
-      <h2>
+      <h3>
        Event Notifications
-      </h2>
+      </h3>
       <p>
-        Get notified of upcoming events!!!!
+        Get notified of upcoming events! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </p>
       <p>
         <a class="btn btn-primary" href="#">View details</a>
@@ -119,11 +125,11 @@
 <!--  </div>
   <div class="row"> -->
     <div class="col-md-4">
-      <h2>
+      <h3>
         QR Code Scanning
-      </h2>
+      </h3>
       <p>
-        Scan your QR code stickers to get information on your task.
+        Scan your QR code stickers to get information on your task or event. The stickers can be blah some other text with blah blah stuff all over the blah. 
       </p>
       <p>
         <a class="btn btn-primary" href="#">View details</a>
@@ -134,6 +140,49 @@
     </div> -->
   </div>
 </div>
+<hr/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>
+        More Content
+      </h2>
+    </div>
+  </div>
+   <div class="row">
+    <div class="col-md-4">
+      <h3>
+       Stuff
+      </h3>
+      <p>
+         We can remind you of a task and let you blah blah do stuff blah blah
+      </p>
+    </div>
+     <div class="col-md-4">
+      <h3>
+       More Stuff
+      </h3>
+      <p>
+         wefgjbgl;ksbgf stg wteg wethwtreh wthrethwer hhwerth etg
+      </p>
+    </div>
+  </div>
+</div>
+
+<br><br><br>
+
+<footer>
+  <div class="container">
+  <hr/>
+    <div class="row" style="margin-top: -20px; margin-bottom: -20px;">
+      <div class="pull-right" style="margin-right: 20px">
+        <h5>
+          &copy; 2015 The Iterators
+        </h5>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
