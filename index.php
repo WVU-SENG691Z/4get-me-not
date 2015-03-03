@@ -65,9 +65,9 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
           <div class="btn-toolbar">
-            <button type="submit" style="background-color: #1E90FF; color: white" 
+            <button id="signin" style="background-color: #1E90FF; color: white" 
                     class="navbar-btn btn btn-default">Sign In</button>
-            <button type="submit" style="background-color: #D3D3D3;" 
+            <button id="createaccount" style="background-color: #D3D3D3;" 
                     class="navbar-btn btn btn-default">Create Account</button>
         </li>
       </ul>
@@ -186,6 +186,16 @@
 
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script>
+
+  $(function(){
+    $('#signin').click(function(){
+        window.location='login.php';
+    });
+  });
+
+</script>
 
 </body>
 </html>
