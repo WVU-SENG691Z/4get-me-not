@@ -29,7 +29,7 @@
 </head>
 
 <body>
-<header class="navbar navbar-default navbar-static-top" id="top" role="banner"
+<header class="navbar navbar-default navbar-fixed-top" id="top" role="banner"
         style="margin-bottom: -20px;">
   <div class="container">
     <div class="navbar-header">
@@ -46,7 +46,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu<strong class="caret"></strong></a>
           <ul class="dropdown-menu">
             <li>
-              <a href="#">Open Calendar</a>
+              <a href="calendar.php">Open Calendar</a>
             </li>
             <li>
               <a href="#">Do something else</a>
