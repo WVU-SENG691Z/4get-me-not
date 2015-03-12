@@ -7,7 +7,7 @@
 
         $day = $_GET['day'];
 
-        $query  = "SELECT * FROM events WHERE date_trunc('day', event_time)::DATE - DATE '".$day."' = 0;";
+        $query  = "SELECT * FROM events WHERE date_trunc('day', event_time_start)::DATE - DATE '".$day."' = 0;";
 
         $result = pg_query($dbLink, $query);
 
@@ -22,8 +22,8 @@
             {
                 echo "<div class=\"span4 detail\">";
                 echo "  <h5>Title:       ".$row->title."</h5>";
-                echo "  <h5>Start Time:  ".$row->event_time."</h5>";
-                echo "  <h5>End Time:    ".$row->event_span."</h5>";
+                echo "  <h5>Start Time:  ".$row->event_time_start."</h5>";
+                echo "  <h5>End Time:    ".$row->event_time_end."</h5>";
                 echo "  <h5>Location:    ".$row->location."</h5>";
                 echo "  <h5>Description: ".$row->description."</h5>";
                 echo "</div><br>";

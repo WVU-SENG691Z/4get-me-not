@@ -4,8 +4,8 @@
     $dbLink = pg_connect("host=127.0.0.1 dbname=dev1 user=postgres")
                 or die("Unable to connect to database");
 
-    $query  = "SELECT date_trunc('day', event_time)::DATE as day, COUNT(event_time) FROM ";
-    $query .= "events GROUP BY date_trunc('day', event_time);";
+    $query  = "SELECT date_trunc('day', event_time_start)::DATE as day, COUNT(event_time_start) ";
+    $query .= "FROM events GROUP BY date_trunc('day', event_time_start);";
 
     $result = pg_query($dbLink, $query);
 
