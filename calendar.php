@@ -116,8 +116,20 @@ $( document ).ready( function() {
     });
   }
 
+  function getMonth()
+  {
+    var today = new Date();
+    var month = today.getMonth() + 1; //0 based
+    var year = today.getFullYear();
+
+    if(month < 10)
+      month = '0' + month;
+
+    return year+'-'+month;
+  }
+
   $('#calendar').responsiveCalendar({
-    time: '2015-04',
+    time: getMonth(),
     
     onDayClick: function(events) 
     { 
