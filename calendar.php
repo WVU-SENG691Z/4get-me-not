@@ -111,11 +111,11 @@
           </div>
           <div class="form-group">
             <label for="event-start" class="control-label">Start Time:</label>
-            <input type="text" class="form-control" id="event-start">
+            <input type="datetime-local" class="form-control" id="event-start">
           </div>    
           <div class="form-group">
             <label for="event-end" class="control-label">End Time:</label>
-            <input type="text" class="form-control" id="event-end">
+            <input type="datetime-local" class="form-control" id="event-end">
           </div>
           <div class="form-group">
             <label for="event-location" class="control-label">Location:</label>
