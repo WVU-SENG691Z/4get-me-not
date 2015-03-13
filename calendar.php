@@ -56,7 +56,7 @@
 
 <div class="container">
   <div class="row" style="margin-top: 60px">
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div id="calendar" class="responsive-calendar">
         <div class="controls">
             <a class="pull-left" data-go="prev"><div class="btn btn-primary">Prev</div></a>
@@ -77,9 +77,60 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3 col-md-offset-1" style="margin-top: -20px">
+    <div class="col-md-6" style="margin-top: -20px">
       <h2>Events</h2>
-      <div id="eventlist"> <div>
+      <div id="eventlist"> </div>
+    </div>
+  </div> <!--
+  <div class="row">
+    <div class="col-md-4">
+      <div class="col-md-6">
+        <button id="addevent" class="btn btn-primary">Add Event</button>
+      </div>
+      <div class="col-md-6">
+        <button id="addevent" class="btn btn-primary">Delete Event</button>
+      </div>
+    </div>
+  </div>-->
+</div>
+
+<div id="addEventModal" class="modal fade bs-example-modal-sm">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Add Event</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="event-title" class="control-label">Title:</label>
+            <input type="text" class="form-control" id="event-title">
+          </div>
+          <div class="form-group">
+            <label for="event-start" class="control-label">Start Time:</label>
+            <input type="text" class="form-control" id="event-start">
+          </div>    
+          <div class="form-group">
+            <label for="event-end" class="control-label">End Time:</label>
+            <input type="text" class="form-control" id="event-end">
+          </div>
+          <div class="form-group">
+            <label for="event-location" class="control-label">Location:</label>
+            <input type="text" class="form-control" id="event-location">
+          </div>
+          <div class="form-group">
+            <label for="event-description" class="control-label">Description:</label>
+            <textarea type="text" class="form-control" id="event-description"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="saveEvent" type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
   </div>
 </div>
@@ -91,6 +142,21 @@
 <script src="js/responsive-calendar.min.js"></script>
 
 <script type="text/javascript">
+
+$(document).on("click", "#addEvent", function (event) 
+{
+    $("#addEventModal").modal();
+});
+
+$(document).on("click", "#deleteEvent", function (event) 
+{
+    alert("DELETE!!!!");
+});
+
+$(document).on("click", "#editEvent", function (event) 
+{
+    alert("EDIT!!!!");
+});
 
 $( document ).ready( function() {
   function addLeadingZero(num) {
