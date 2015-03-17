@@ -58,13 +58,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close addEventCancel" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title" id="myModalLabel">Add Event</h4>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="addEventForm">
           <div class="form-group">
             <label for="event-title" class="control-label">Title:</label>
             <input type="text" class="form-control" id="event-title">
@@ -88,7 +88,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default addEventCancel" 
+                data-dismiss="modal">Close</button>
         <button id="saveEvent" type="button" class="btn btn-primary">Add Event</button>
       </div>
     </div>
@@ -99,7 +100,7 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close deleteEventCancel" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title" id="myModalLabel">Delete Event</h4>
@@ -108,7 +109,8 @@
         <h6>Are you sure you want to delete this event?</h6>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-default deleteEventCancel" 
+                data-dismiss="modal">Cancel</button>
         <button id="deleteEventConfirm" type="button" class="btn btn-danger">Delete Event</button>
       </div>
     </div>
@@ -144,6 +146,12 @@ $(document).on("click", "#addEvent", function (event)
     $("#addEventModal").modal();
 });
 
+$(document).on("click", ".addEventCancel", function (event) 
+{
+    $("#addEventForm")[0].reset(); //clear form data
+});
+
+
 $(document).on("click", "#saveEvent", function (event) 
 {
     $.ajax(
@@ -164,11 +172,13 @@ $(document).on("click", "#saveEvent", function (event)
     .done(function(response)
     {
       $("#addEventModal").modal('hide');
+      $("#addEventForm")[0].reset(); //clear form data
       loadCalendar();
     });
+
 });
 
-$(document).on("click", "#deleteEventCancel", function (event)
+$(document).on("click", ".deleteEventCancel", function (event)
 {
     $('.delete-active').removeClass("delete-active");
 });
