@@ -6,17 +6,15 @@
 <head>
   <title>4get-me-not</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
-  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
   <style>
     .jumbotron {
-      color: white;
       height: 500px;
-      width: 100%;
+      background: url('img/calendar_1600.jpg') center top no-repeat;
       background-size: cover; 
-      background-position: center; 
-      background: url('img/calendar_1600.jpg') no-repeat;
     }
   </style>
 
@@ -32,9 +30,8 @@
 <?php
   require('header.php');
 ?>
-
-<div class="jumbotron vertical-center">
-  <div class="container">
+<div class="jumbotron">
+  <div class="container" style="color: black; transform: translateY(30%); ">
     <h1>
       4get-me-not
     </h1>
@@ -43,10 +40,9 @@
     </div><br>
     <p>
       <a class="btn btn-primary btn-large" href="#">Learn more</a>
-    </p>  
+    </p> 
   </div>
 </div>
-
 <div class="container">
   <div class="row">
     <div class="col-md-6">
