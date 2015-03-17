@@ -35,7 +35,7 @@
                 echo $row->title;
                 echo "      </a></h4>";
                 echo "  </div>";
-                echo "  <div id=\"collapse".$i."\" class=\"panel-collapse collapse in\"";
+                echo "  <div id=\"collapse".$i."\" class=\"panel-collapse collapse\"";
                 echo "       role=\"tabpanel\" aria-labelledby=\"heading".$i."\">";
                 echo "    <div class=\"panel-body\">";
                 echo "      <h6>Start Time:  ".$row->event_time_start."</h6>";
