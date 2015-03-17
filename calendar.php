@@ -7,6 +7,7 @@
 
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="css/responsive-calendar.css" rel="stylesheet" media="screen">
+  <link href="css/smallmodal.css" rel="stylesheet" media="screen">
 </head>
 
 <body>
@@ -129,7 +130,27 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button id="saveEvent" type="button" class="btn btn-primary">Save changes</button>
+        <button id="saveEvent" type="button" class="btn btn-primary">Add Event</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="deleteEventModal" class="modal fade bs-example-modal-sm small">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Delete Event</h4>
+      </div>
+      <div id="deleteEventBody" class="modal-body">
+        <h6>Are you sure you want to delete this event?</h6>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button id="deleteEventConfirm" type="button" class="btn btn-danger">Delete Event</button>
       </div>
     </div>
   </div>
@@ -143,14 +164,93 @@
 
 <script type="text/javascript">
 
+function loadCalendar() 
+{
+    $.ajax(
+    {
+      type:'POST',
+      url:'loadCalendar.php',
+      data: { userid: 123 },
+      success: function (response)
+      {
+        var data = JSON.parse(response);
+        $('#calendar').responsiveCalendar('edit', data);
+      }
+    });
+}
+
 $(document).on("click", "#addEvent", function (event) 
 {
     $("#addEventModal").modal();
 });
 
+$(document).on("click", "#saveEvent", function (event) 
+{
+    $.ajax(
+    {
+      type:'POST',
+      url:'addEvent.php',
+      data: { userid: 123,
+              eventTitle: $("#event-title").val(), 
+              eventStart: $("#event-start").val(),
+              eventEnd: $("#event-end").val(),
+              eventLocation: $("#event-location").val(),
+              eventDescription: $("#event-description").val() },
+      fail: function (response)
+      {
+        alert("Failed to create new event "+response);
+      }
+    })
+    .done(function(response)
+    {
+      $("#addEventModal").modal('hide');
+      loadCalendar();
+    });
+});
+
+$(document).on("click", "#deleteEventCancel", function (event)
+{
+    $('.delete-active').removeClass("delete-active");
+});
+
 $(document).on("click", "#deleteEvent", function (event) 
 {
-    alert("DELETE!!!!");
+    $("#deleteEvent").addClass("delete-active");
+    $("#deleteEventModal").modal();
+});
+
+$(document).on("click", "#deleteEventConfirm", function (event)
+{
+    var jqElement =  $('.delete-active');
+    var element = jqElement[0];
+    jqElement.removeClass("delete-active");
+    var eventToDelete = element.dataset.eventid;
+
+    if(eventToDelete > 0)
+    {
+        $.ajax(
+        {
+          type:'POST',
+          url:'deleteEvent.php',
+          data: { userid: 123,
+                  eventid: eventToDelete },
+          fail: function (response)
+          {
+            alert("Failed to create new event "+response);
+          }
+        })
+        .done(function(response)
+        {
+          jqElement.parent().parent().remove();
+          $("#deleteEventModal").modal('hide');
+          $('#calendar').responsiveCalendar('clearAll');
+          loadCalendar();
+        });
+    }
+    else
+    {
+        alert("INVALID EVENT ID");
+    }
 });
 
 $(document).on("click", "#editEvent", function (event) 
@@ -165,21 +265,6 @@ $( document ).ready( function() {
     } else {
       return "" + num;
     }
-  }
-
-  function loadCalendar() 
-  {
-    $.ajax(
-    {
-      type:'POST',
-      url:'loadCalendar.php',
-      data: {userid: 123},
-      success: function (response)
-      {
-        var data = JSON.parse(response);
-        $('#calendar').responsiveCalendar('edit', data);
-      }
-    });
   }
 
   function getMonth()
