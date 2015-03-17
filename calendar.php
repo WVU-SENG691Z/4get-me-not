@@ -161,6 +161,7 @@
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/responsive-calendar.min.js"></script>
+<script src="js/signin.js"></script>
 
 <script type="text/javascript">
 

@@ -186,16 +186,7 @@
 
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-
-<script>
-
-  $(function(){
-    $('#signin').click(function(){
-        window.location='login.php';
-    });
-  });
-
-</script>
+<script src="js/signin.js"></script>
 
 </body>
 </html>
