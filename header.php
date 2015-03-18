@@ -37,6 +37,7 @@
                     class="navbar-btn btn btn-default">Sign In</button>
             <button id="createaccount" style="background-color: #D3D3D3;"
                     class="navbar-btn btn btn-default">Create Account</button>
+          </div>
         </li>
       </ul>
     </nav>
