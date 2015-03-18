@@ -12,13 +12,23 @@
 
         $result = pg_query($dbLink, $query);
 
-        echo "<h4>".$day.
-             "</h4><button id=\"addEvent\" class=\"btn btn-xs btn-success\">Add</button><br><br>";
+        //Insert day, add button, and placeholder for add/edit/delete notifications
+        echo '<h4 id="selectedDay">'.$day.'</h4>'.
+             '<div class="row">'.
+             '  <div class="col-md-2 col-xs-2">'.
+             '    <button id="addEventButton" class="btn btn-success">Add</button>'.
+             '  </div>'.
+             '  <div class="col-md-9 col-xs-9">'.
+             '    <div id="successNotification"></div>'.
+             '  </div>'.
+             '</div><br>';
+
         if(pg_num_rows($result) > 0)
         {
             echo "<div class=\"panel-group\" id=\"accordion\" role=\"tablist\" 
                        aria-multiselectable=\"true\">";
             $i = 0;
+            //add each event for a particular day
             while($row = pg_fetch_object($result))
             {
                 echo "<div class=\"panel panel-default\">";

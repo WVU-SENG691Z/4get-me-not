@@ -1,13 +1,25 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <title>4get-me-not</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
-  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/responsive-calendar.css" rel="stylesheet" media="screen">
-  <link href="css/smallmodal.css" rel="stylesheet" media="screen">
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="css/responsive-calendar.css" rel="stylesheet" media="screen"/>
+  <link href="css/bootstrap.datetimepicker.css" rel="stylesheet" media="screen"/>
+  <link href="css/smallmodal.css" rel="stylesheet" media="screen"/>
+
+  <style>
+    .alert-sm
+    {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -24,13 +36,13 @@
             <a class="pull-right" data-go="next"><div class="btn btn-primary">Next</div></a>
         </div><hr/>
         <div class="day-headers">
+          <div class="day header">Sun</div>
           <div class="day header">Mon</div>
           <div class="day header">Tue</div>
           <div class="day header">Wed</div>
           <div class="day header">Thu</div>
           <div class="day header">Fri</div>
           <div class="day header">Sat</div>
-          <div class="day header">Sun</div>
         </div>
         <div class="days" data-group="days">
           <!-- the place where days will be generated -->
@@ -41,17 +53,7 @@
       <h2>Events</h2>
       <div id="eventlist"> </div>
     </div>
-  </div> <!--
-  <div class="row">
-    <div class="col-md-4">
-      <div class="col-md-6">
-        <button id="addevent" class="btn btn-primary">Add Event</button>
-      </div>
-      <div class="col-md-6">
-        <button id="addevent" class="btn btn-primary">Delete Event</button>
-      </div>
-    </div>
-  </div>-->
+  </div>
 </div>
 
 <div id="addEventModal" class="modal fade bs-example-modal-sm">
@@ -71,11 +73,19 @@
           </div>
           <div class="form-group">
             <label for="event-start" class="control-label">Start Time:</label>
-            <input type="datetime-local" class="form-control" id="event-start">
+            <div class="input-group date" id="datetimepickerEventStart">
+              <input type="text" class="form-control" id="event-start" 
+                     placeholder="MM/DD/YYYY HH:MM A"/>
+              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+            </div>
           </div>    
           <div class="form-group">
             <label for="event-end" class="control-label">End Time:</label>
-            <input type="datetime-local" class="form-control" id="event-end">
+            <div class="input-group date" id="datetimepickerEventEnd">
+              <input type="text" class="form-control" id="event-end" 
+                     placeholder="MM/DD/YYYY HH:MM A"/>
+              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+            </div>
           </div>
           <div class="form-group">
             <label for="event-location" class="control-label">Location:</label>
@@ -90,7 +100,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default addEventCancel" 
                 data-dismiss="modal">Close</button>
-        <button id="saveEvent" type="button" class="btn btn-primary">Add Event</button>
+        <button id="saveNewEvent" type="button" class="btn btn-primary">Add Event</button>
       </div>
     </div>
   </div>
@@ -120,11 +130,32 @@
 </body>
 
 <script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/moment.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/responsive-calendar.min.js"></script>
+<script src="js/bootstrap.datetimepicker.min.js"></script>
 <script src="js/signin.js"></script>
 
 <script type="text/javascript">
+
+$(function () 
+{
+    $('#datetimepickerEventStart').datetimepicker({format: 'MM/DD/YYYY hh:mm a'});
+    $('#datetimepickerEventEnd').datetimepicker({format: 'MM/DD/YYYY hh:mm a'});
+/*
+    //make sure we dont have a ending date before a start date
+    $('#datetimepickerEventStart').on("dp.change",function (e) 
+    {
+        $('#datetimepickerEventEnd').data("DateTimePicker").minDate(e.date);
+    });
+
+    //make sure we dont have a starting date after an end date
+    $('#datetimepickerEventEnd').on("dp.change",function (e) 
+    {
+        $('#datetimepickerEventStart').data("DateTimePicker").maxDate(e.date);
+    });
+*/
+});
 
 function loadCalendar() 
 {
@@ -141,8 +172,19 @@ function loadCalendar()
     });
 }
 
-$(document).on("click", "#addEvent", function (event) 
+function alertTimeout(timeout)
 {
+    setTimeout(function()
+    {
+        $("#successNotification").children('.alert:first-child').remove();
+    }, timeout);
+}
+
+$(document).on("click", "#addEventButton", function (event) 
+{
+    //set the default day in the picker to the selected day from the calendar
+    var selectedDay = moment($("#selectedDay").text());
+    $('#datetimepickerEventStart').data("DateTimePicker").date(selectedDay);
     $("#addEventModal").modal();
 });
 
@@ -152,7 +194,7 @@ $(document).on("click", ".addEventCancel", function (event)
 });
 
 
-$(document).on("click", "#saveEvent", function (event) 
+$(document).on("click", "#saveNewEvent", function (event) 
 {
     $.ajax(
     {
@@ -171,6 +213,8 @@ $(document).on("click", "#saveEvent", function (event)
     })
     .done(function(response)
     {
+      $("#successNotification").html(response.data);
+      alertTimeout(3000); //close after 3 seconds
       $("#addEventModal").modal('hide');
       $("#addEventForm")[0].reset(); //clear form data
       loadCalendar();
@@ -211,6 +255,8 @@ $(document).on("click", "#deleteEventConfirm", function (event)
         })
         .done(function(response)
         {
+          $("#successNotification").html(response.data);
+          alertTimeout(5000); //close after 5 seconds, add time to read
           jqElement.parent().parent().remove();
           $("#deleteEventModal").modal('hide');
           $('#calendar').responsiveCalendar('clearAll');
@@ -251,6 +297,7 @@ $( document ).ready( function() {
 
   $('#calendar').responsiveCalendar({
     time: getMonth(),
+    startFromSunday: true,
     
     onDayClick: function(events) 
     { 

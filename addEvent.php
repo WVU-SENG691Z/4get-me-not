@@ -1,9 +1,13 @@
 <?php
 
+    header('Content-type: application/json');
+
     if(isset($_POST['eventTitle']) && isset($_POST['eventStart']) &&
        isset($_POST['eventEnd']) && isset($_POST['eventLocation']) &&
        isset($_POST['eventDescription']) && isset($_POST['userid']))
     {
+        $responseArray = array();
+
         $dbLink = pg_connect("host=127.0.0.1 dbname=dev1 user=postgres") 
                     or die("Unable to connect to database");
 
@@ -14,14 +18,27 @@
         $eventLocation = $_POST['eventLocation'];
         $eventDescription = $_POST['eventDescription'];
 
-        $result = pg_query_params($dbLink, 'INSERT INTO events (userid, title, event_time_start, event_time_end, location, description)
-                                            VALUES($1, $2, $3, $4, $5, $6)', 
-                                  array($userid, $eventTitle, $eventStart, $eventEnd, $eventLocation, $eventDescription));
+        $result = 
+            pg_query_params($dbLink, 'INSERT INTO events (userid, title, event_time_start, '.
+                                     'event_time_end, location, description)'.
+                                     'VALUES($1, $2, $3, $4, $5, $6)', 
+                            array($userid, $eventTitle, $eventStart, $eventEnd, 
+                                  $eventLocation, $eventDescription));
 
         if(!$result) 
         {
-            echo "An error occurred.".pg_last_error($dbLink);
-            exit;
+            $responseArray['status'] = 'error';
+            $responseArray['data'] = '<div class="alert alert-danger alert-sm" role="alert">'.
+                                     'Could not add your event.'.pg_last_error($dbLink).
+                                     '</div>';
         }
+        else
+        {
+            $responseArray['status'] = 'success';
+            $responseArray['data'] = '<div class="alert alert-success alert-sm" role="alert">'.
+                                     'Successfully added your new event!</div>';
+        }
+
+        echo json_encode($responseArray);
     }
 ?>
