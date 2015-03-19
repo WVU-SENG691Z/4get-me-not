@@ -1,0 +1,3 @@
+[submodule "externals/QRCode-Generator-PHP-Class"]
+	path = externals/QRCode-Generator-PHP-Class
+	url = https://github.com/pH-7/QRCode-Generator-PHP-Class.git
