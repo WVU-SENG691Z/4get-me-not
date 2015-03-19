@@ -67,24 +67,25 @@
       </div>
       <div class="modal-body">
         <form id="addEventForm">
-          <div class="form-group">
+          <div class="form-group has-feedback">
             <label for="event-title" class="control-label">Title:</label>
-            <input type="text" class="form-control" id="event-title">
+            <input type="text" class="form-control" name="event-title" id="event-title" required>
+            <span class="glyphicon form-control-feedback" id="event-title1"></span>
           </div>
-          <div class="form-group">
+          <div class="form-group has-feedback">
             <label for="event-start" class="control-label">Start Time:</label>
             <div class="input-group date" id="datetimepickerEventStart">
-              <input type="text" class="form-control" id="event-start" 
-                     placeholder="MM/DD/YYYY HH:MM A"/>
-              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+              <input type="text" class="form-control" id="event-start" name="event-start"
+                     placeholder="MM/DD/YYYY HH:MM A" required/>
+              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
             </div>
           </div>    
-          <div class="form-group">
+          <div class="form-group has-feedback">
             <label for="event-end" class="control-label">End Time:</label>
             <div class="input-group date" id="datetimepickerEventEnd">
-              <input type="text" class="form-control" id="event-end" 
-                     placeholder="MM/DD/YYYY HH:MM A"/>
-              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+              <input type="text" class="form-control" id="event-end" name="event-end"
+                     placeholder="MM/DD/YYYY HH:MM A" required/>
+              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
             </div>
           </div>
           <div class="form-group">
@@ -135,6 +136,7 @@
 <script src="js/responsive-calendar.min.js"></script>
 <script src="js/bootstrap.datetimepicker.min.js"></script>
 <script src="js/signin.js"></script>
+<script src="js/jquery.validate.min.js"></script>
 
 <script type="text/javascript">
 
@@ -156,6 +158,7 @@ $(function ()
     });
 */
 });
+
 
 function loadCalendar() 
 {
@@ -180,6 +183,15 @@ function alertTimeout(timeout)
     }, timeout);
 }
 
+function clearForm()
+{
+    $('.help-block').remove();
+    $('#saveNewEvent').prop('disabled', 'disabled'); // disable button
+    $('.form-group').removeClass('has-success').removeClass('has-error');
+    $('.form-control-feedback').removeClass('glyphicon-ok').removeClass('glyphicon-remove');
+    $("#addEventForm")[0].reset(); //clear form data
+}
+
 $(document).on("click", "#addEventButton", function (event) 
 {
     //set the default day in the picker to the selected day from the calendar
@@ -190,7 +202,7 @@ $(document).on("click", "#addEventButton", function (event)
 
 $(document).on("click", ".addEventCancel", function (event) 
 {
-    $("#addEventForm")[0].reset(); //clear form data
+    clearForm(); //clear form data
 });
 
 
@@ -216,7 +228,7 @@ $(document).on("click", "#saveNewEvent", function (event)
       $("#successNotification").html(response.data);
       alertTimeout(3000); //close after 3 seconds
       $("#addEventModal").modal('hide');
-      $("#addEventForm")[0].reset(); //clear form data
+      clearForm();
       loadCalendar();
     });
 
@@ -318,6 +330,56 @@ $( document ).ready( function() {
   });
 
   loadCalendar();
+
 });
 
+$("#addEventForm").validate(
+{
+    rules: 
+    {
+        'event-title': 
+        {
+            minlength: 3,
+            maxlength: 15,
+            required: true
+        },
+        'event-start':
+        {
+            required: true
+        },
+        'event-end':
+        {
+            required: true
+        }
+    },
+    highlight: function(element) 
+    {
+        var id_attr = "#" + $( element ).attr("id") + "1";
+        $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+        $(id_attr).removeClass('glyphicon-ok').addClass('glyphicon-remove');         
+    },
+    unhighlight: function(element) 
+    {
+        var id_attr = "#" + $( element ).attr("id") + "1";
+        $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+        $(id_attr).removeClass('glyphicon-remove').addClass('glyphicon-ok');         
+    },
+    errorElement: 'div',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) 
+        {
+            if(element.next().is('.input-group-addon'))
+                 error.insertAfter(element.parent());
+            else
+                error.insertAfter(element);
+        }
+});
+
+$('#addEventForm input').on('keyup blur', function () 
+{ 
+    if ($('#addEventForm').valid()) 
+        $('#saveNewEvent').prop('disabled', false);        // enables button
+    else 
+        $('#saveNewEvent').prop('disabled', 'disabled');   // disables button
+});
 </script>
