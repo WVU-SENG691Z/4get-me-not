@@ -144,7 +144,7 @@ $(function ()
 {
     $('#datetimepickerEventStart').datetimepicker({format: 'MM/DD/YYYY hh:mm a'});
     $('#datetimepickerEventEnd').datetimepicker({format: 'MM/DD/YYYY hh:mm a'});
-/*
+
     //make sure we dont have a ending date before a start date
     $('#datetimepickerEventStart').on("dp.change",function (e) 
     {
@@ -156,7 +156,7 @@ $(function ()
     {
         $('#datetimepickerEventStart').data("DateTimePicker").maxDate(e.date);
     });
-*/
+
 });
 
 
@@ -195,6 +195,7 @@ function clearForm()
 $(document).on("click", "#addEventButton", function (event) 
 {
     //set the default day in the picker to the selected day from the calendar
+    clearForm();
     var selectedDay = moment($("#selectedDay").text());
     $('#datetimepickerEventStart').data("DateTimePicker").date(selectedDay);
     $("#addEventModal").modal();
