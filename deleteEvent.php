@@ -23,7 +23,7 @@
         {
             $responseArray['status'] = 'success';
             $responseArray['data'] = '<div class="alert alert-success alert-sm" role="alert">'.
-                                     'Sucessfully deleted event!</div>';
+                                     'Successfully deleted event!</div>';
         }
 
         echo json_encode($responseArray);
