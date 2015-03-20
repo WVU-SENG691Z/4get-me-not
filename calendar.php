@@ -340,7 +340,7 @@ $("#addEventForm").validate(
         'event-title': 
         {
             minlength: 3,
-            maxlength: 15,
+            maxlength: 64,
             required: true
         },
         'event-start':
