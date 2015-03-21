@@ -10,7 +10,7 @@ $qr = new BarcodeQR();
 
 
 // create URL QR code 
-$qr->url("http://justinbroussard.com/mark/event_handler.php?event_id=$event_id"); 
+$qr->url("http://justinbroussard.com/mark/handleQRScan.php?event_id=$event_id"); 
 
 // display new QR code image 
 $qr->draw();
