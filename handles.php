@@ -41,6 +41,9 @@
 		<div class="panel-group" id="accordion">
 			<?php while($row = pg_fetch_object($result)): ?>
 				<div class="panel panel-default">
+				<button id="deleteEvent" data-eventid="<?php echo $row->eventid; ?>" class="pull-right btn btn-danger">Delete</button>
+                <button id="editEvent" data-eventid="<?php echo $row->eventid; ?>" class="pull-right btn btn-info">Edit</button>
+				
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo ++$i; ?>"><?php echo $row->title; ?></a>
@@ -55,11 +58,7 @@
 				</div>
 			<?php endwhile; ?>
 		</div>
-		
 
-		
-		
-		
     </div>
   </div>
 </div>
@@ -74,3 +73,4 @@
 <script src="js/bootstrap.datetimepicker.min.js"></script>
 <script src="js/signin.js"></script>
 <script src="js/jquery.validate.min.js"></script>
+
