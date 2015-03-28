@@ -19,6 +19,9 @@
             <li>
               <a href="calendar.php">Calendar</a>
             </li>
+            <li>
+              <a href="handles.php">QR</a>
+            </li>
           </ul>
          </li>
          <li>

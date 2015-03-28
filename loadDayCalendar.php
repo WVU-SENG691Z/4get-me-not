@@ -7,7 +7,7 @@
 
         $day = $_GET['day'];
 
-        $query  = "SELECT * FROM events WHERE '".$day."' BETWEEN ";
+        $query  = "SELECT handles.title, handles, events.event_time_start,  events.location, events.event_time_end, eventid FROM handles, events WHERE handles.handle_id=events.handle_id AND '".$day."' BETWEEN ";
         $query .= "date_trunc('day', event_time_start) and date_trunc('day', event_time_end);";
 
         $result = pg_query($dbLink, $query);
