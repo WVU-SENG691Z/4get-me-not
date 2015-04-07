@@ -36,7 +36,6 @@
 		<?php
         $dbLink = pg_connect("host=127.0.0.1 dbname=dev1 user=postgres") or die("Unable to connect to database");
         $query  = "SELECT * FROM handles;";
-        $query  = "SELECT * FROM events;";
         $result = pg_query($dbLink, $query);
 		?>
 
@@ -54,16 +53,22 @@
 					</div>
 
 				<div id="collapse<?php echo $i; ?>" class="panel-collapse collapse in">
-					<div class="panel-body">                                              
-	
-     							 <p><img src="qr.php?event_id=<?php echo $row->handle_id; ?>"></p>
+				
+					 <div class="panel-body">
+                                                        <p><img src="qr.php?event_id=<?php echo $row->handle_id; ?>"></p>
+                                                        <p><?php echo $row->description; ?></p>
 
-                                                        <p><?php echo $row->event_time_start; ?> - <?php echo $row->event_time_end; ?></p>
+                                                        <?php $query_events  = "SELECT * FROM events WHERE handle_id='". $row->handle_id ."'";
+                                                        $result_events = pg_query($dbLink, $query_events);
 
-							<p><?php echo $row->description;?></p>
+                                                        while ($events = pg_fetch_object($result_events)):
+                                                        ?>
+                                                                <p><?php echo $events->event_time_start; ?> - <?php echo $events->event_time_end; ?></p>
 
-						</div>
+                                                     
+  							 <?php endwhile; ?>
 					</div>
+                                </div>
 				</div>
 			<?php endwhile; ?>
 		</div>
