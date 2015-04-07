@@ -36,23 +36,48 @@
 		<?php
         $dbLink = pg_connect("host=127.0.0.1 dbname=dev1 user=postgres") or die("Unable to connect to database");
         $query  = "SELECT * FROM handles;";
+        $query  = "SELECT * FROM events;";
         $result = pg_query($dbLink, $query);
 		?>
+
+
 		<div class="panel-group" id="accordion">
 			<?php while($row = pg_fetch_object($result)): ?>
-				<div class="panel panel-default">
+				<div class="panel panel-default">tes
 				<button id="deleteEvent" data-eventid="<?php echo $row->eventid; ?>" class="pull-right btn btn-danger">Delete</button>
-                <button id="editEvent" data-eventid="<?php echo $row->eventid; ?>" class="pull-right btn btn-info">Edit</button>
+               		        <button id="editEvent" data-eventid="<?php echo $row->eventid; ?>" class="pull-right btn btn-info">Edit</button>
 				
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo ++$i; ?>"><?php echo $row->title; ?></a>
 						</h4>
 					</div>
-					<div id="collapse<?php echo $i; ?>" class="panel-collapse collapse in">
-						<div class="panel-body">
-							<p><img src="qr.php?event_id=<?php echo $row->handle_id; ?>"></p>
-							<p><?php echo $row->description; ?></p>
+
+				<div id="collapse<?php echo $i; ?>" class="panel-collapse collapse in">
+					<div class="panel-body">
+
+		     
+					
+								<?php
+                                                                for($i = 0; $i<$row->handle_id; $i++){
+							
+                                                         }
+                                                            ?>
+                                                 
+                                               
+                                                        <p><?php echo $row->description;?></p>
+
+					             
+
+
+
+
+                                                                      
+  							
+     							 <p><img src="qr.php?event_id=<?php echo $row->handle_id; ?>"></p>
+
+                                                        <p><?php echo $row->event_time_start; ?> - <?php echo $row->event_time_end; ?></p>
+
 						</div>
 					</div>
 				</div>
