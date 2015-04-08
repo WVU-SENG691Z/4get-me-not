@@ -7,7 +7,12 @@
 
         $day = $_GET['day'];
 
-        $query  = "SELECT handles.title, handles, events.event_time_start,  events.location, events.event_time_end, eventid FROM handles, events WHERE handles.handle_id=events.handle_id AND '".$day."' BETWEEN ";
+/*        $query  = "SELECT handles.title, handles, events.event_time_start, events.location, 
+                   events.event_time_end, eventid FROM handles, events WHERE 
+                   handles.handle_id=events.handle_id AND '".$day."' BETWEEN 
+                   date_trunc('day', event_time_start) and date_trunc('day', event_time_end);";
+*/
+        $query  = "SELECT * FROM events WHERE '".$day."' BETWEEN ";
         $query .= "date_trunc('day', event_time_start) and date_trunc('day', event_time_end);";
 
         $result = pg_query($dbLink, $query);
@@ -32,9 +37,11 @@
             while($row = pg_fetch_object($result))
             {
                 echo "<div class=\"panel panel-default\">";
-                echo "  <button id=\"deleteEvent\" data-eventid=\"".$row->eventid."\" class=\"pull-right btn btn-danger\">";
+                echo "  <button id=\"deleteEvent\" data-eventid=\"".$row->eventid."\" 
+                                class=\"pull-right btn btn-danger\">";
                 echo "    Delete</button>";
-                echo "  <button id=\"editEvent\" data-eventid=\"".$row->eventid."\" class=\"pull-right btn btn-info\">";
+                echo "  <button id=\"editEvent\" data-eventid=\"".$row->eventid."\" 
+                                class=\"pull-right btn btn-info\">";
                 echo "    Edit</button>";
                 echo "  <div class=\"panel-heading\" role=\"tab\" id=\"heading".$i."\">";
                 echo "    <h4 class=\"panel-title\">";

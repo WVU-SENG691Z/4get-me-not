@@ -107,26 +107,9 @@
   </div>
 </div>
 
-<div id="deleteEventModal" class="modal fade bs-example-modal-sm small">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close deleteEventCancel" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">Delete Event</h4>
-      </div>
-      <div id="deleteEventBody" class="modal-body">
-        <h6>Are you sure you want to delete this event?</h6>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default deleteEventCancel" 
-                data-dismiss="modal">Cancel</button>
-        <button id="deleteEventConfirm" type="button" class="btn btn-danger">Delete Event</button>
-      </div>
-    </div>
-  </div>
-</div>
+<?php
+    require('dialogs/deleteEventModal.php');
+?>
 
 </body>
 
@@ -137,6 +120,7 @@
 <script src="js/bootstrap.datetimepicker.min.js"></script>
 <script src="js/signin.js"></script>
 <script src="js/jquery.validate.min.js"></script>
+<script src="js/deleteEvent.js"></script>
 
 <script type="text/javascript">
 
@@ -233,53 +217,6 @@ $(document).on("click", "#saveNewEvent", function (event)
       loadCalendar();
     });
 
-});
-
-$(document).on("click", ".deleteEventCancel", function (event)
-{
-    $('.delete-active').removeClass("delete-active");
-});
-
-$(document).on("click", "#deleteEvent", function (event) 
-{
-    $("#deleteEvent").addClass("delete-active");
-    $("#deleteEventModal").modal();
-});
-
-$(document).on("click", "#deleteEventConfirm", function (event)
-{
-    var jqElement =  $('.delete-active');
-    var element = jqElement[0];
-    jqElement.removeClass("delete-active");
-    var eventToDelete = element.dataset.eventid;
-
-    if(eventToDelete > 0)
-    {
-        $.ajax(
-        {
-          type:'POST',
-          url:'deleteEvent.php',
-          data: { userid: 123,
-                  eventid: eventToDelete },
-          fail: function (response)
-          {
-            alert("Failed to create new event "+response);
-          }
-        })
-        .done(function(response)
-        {
-          $("#successNotification").html(response.data);
-          alertTimeout(5000); //close after 5 seconds, add time to read
-          jqElement.parent().parent().remove();
-          $("#deleteEventModal").modal('hide');
-          $('#calendar').responsiveCalendar('clearAll');
-          loadCalendar();
-        });
-    }
-    else
-    {
-        alert("INVALID EVENT ID");
-    }
 });
 
 $(document).on("click", "#editEvent", function (event) 

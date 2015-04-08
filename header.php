@@ -28,9 +28,9 @@
            <a href="#">About</a>
          </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
+      <form class="navbar-form navbar-left" role="search" action="searchCalendar.php" method="GET">
         <div class="form-group">
-          <input type="text" class="form-control" />
+          <input type="text" name="searchkey" class="form-control" />
         </div> <button type="submit" class="btn btn-default">Search Tasks</button>
       </form>
       <ul class="nav navbar-nav navbar-right">

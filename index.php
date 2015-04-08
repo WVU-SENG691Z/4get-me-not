@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +11,7 @@
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
   <style>
     .jumbotron {
-      height: 500px;
+      height: 600px;
       background: url('img/calendar_1600.jpg') center top no-repeat;
       background-size: cover; 
     }
@@ -32,12 +31,8 @@
 ?>
 <div class="jumbotron">
   <div class="container" style="color: black; transform: translateY(30%); ">
-    <h1>
-      4get-me-not
-    </h1>
-    <div>
-      Your go to task/event organizer. Put me in your pocket.
-    </div><br>
+    <h1 style="">4get-me-not</h1>
+    <div>Your go to task/event organizer. Put me in your pocket.</div><br>
     <p>
       <a class="btn btn-primary btn-large" href="#">Learn more</a>
     </p> 
