@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -135,7 +138,6 @@
 
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="js/signin.js"></script>
 
 </body>
 </html>

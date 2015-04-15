@@ -1,3 +1,7 @@
+<?php
+  require('authentication.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -118,7 +122,6 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/responsive-calendar.min.js"></script>
 <script src="js/bootstrap.datetimepicker.min.js"></script>
-<script src="js/signin.js"></script>
 <script src="js/jquery.validate.min.js"></script>
 <script src="js/deleteEvent.js"></script>
 
@@ -150,7 +153,6 @@ function loadCalendar()
     {
       type:'POST',
       url:'loadCalendar.php',
-      data: { userid: 123 },
       success: function (response)
       {
         var data = JSON.parse(response);
@@ -197,8 +199,7 @@ $(document).on("click", "#saveNewEvent", function (event)
     {
       type:'POST',
       url:'addEvent.php',
-      data: { userid: 123,
-              eventTitle: $("#event-title").val(), 
+      data: { eventTitle: $("#event-title").val(), 
               eventStart: $("#event-start").val(),
               eventEnd: $("#event-end").val(),
               eventLocation: $("#event-location").val(),
@@ -256,9 +257,9 @@ $( document ).ready( function() {
 
       $.ajax(
       {
-        type:'GET',
+        type:'POST',
         url:'loadDayCalendar.php',
-        data: {day: key, userid: 123},
+        data: {day: key},
         success: function (response)
         {
           $("#eventlist").html(response);

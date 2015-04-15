@@ -1,17 +1,17 @@
 <?php
-
+    session_start();
     header('Content-type: application/json');
 
     if(isset($_POST['eventTitle']) && isset($_POST['eventStart']) &&
        isset($_POST['eventEnd']) && isset($_POST['eventLocation']) &&
-       isset($_POST['eventDescription']) && isset($_POST['userid']))
+       isset($_POST['eventDescription']) && isset($_SESSION['USER_ID']))
     {
         $responseArray = array();
 
         $dbLink = pg_connect("host=127.0.0.1 dbname=dev1 user=postgres") 
                     or die("Unable to connect to database");
 
-        $userid = $_POST['userid'];
+        $userid = $_SESSION['USER_ID'];
         $eventTitle = $_POST['eventTitle'];
         $eventStart = $_POST['eventStart'];
         $eventEnd = $_POST['eventEnd'];
@@ -29,7 +29,7 @@
         {
             $responseArray['status'] = 'error';
             $responseArray['data'] = '<div class="alert alert-danger alert-sm" role="alert">'.
-                                     'Could not add your event.'.pg_last_error($dbLink).
+                                     'Coult not add your event.'.pg_last_error($dbLink).
                                      '</div>';
         }
         else

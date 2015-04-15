@@ -1,22 +1,31 @@
 
 <?php
+    session_start();
 
-    $dbLink = pg_connect("host=127.0.0.1 dbname=dev1 user=postgres")
-                or die("Unable to connect to database");
+    if(isset($_SESSION['USER_ID']))
+    {
+        $userid = $_SESSION['USER_ID'];
 
-    $query  = "SELECT dates, COUNT(dates) FROM (SELECT generate_series(date_trunc('day', ";
-    $query .= "event_time_start), date_trunc('day', event_time_end), '1 day')::date AS dates ";
-    $query .= "FROM events)t GROUP BY dates;";
+        $dbLink = pg_connect("host=127.0.0.1 dbname=dev1 user=postgres")
+                    or die("Unable to connect to database");
 
-    $result = pg_query($dbLink, $query);
+        $query  = "SELECT dates, COUNT(dates) FROM (SELECT generate_series(date_trunc('day', ";
+        $query .= "event_time_start), date_trunc('day', event_time_end), '1 day')::date AS dates ";
+        $query .= "FROM events WHERE userid=".$userid.")t GROUP BY dates;";
 
-    $dayInformation = '{';
+        $result = pg_query($dbLink, $query);
 
-    while($row = pg_fetch_object($result))
-        $dayInformation .= '"'.$row->dates.'": {"number": '.(int)$row->count.'},';
+        $dayInformation = '{';
 
-    $dayInformation = substr($dayInformation, 0, -1);
-    $dayInformation .= '}';
+        if(pg_num_rows($result) > 0)
+        {
+            while($row = pg_fetch_object($result))
+                $dayInformation .= '"'.$row->dates.'": {"number": '.(int)$row->count.'},';
 
-    echo $dayInformation;
+            $dayInformation = substr($dayInformation, 0, -1);
+        }
+            
+        $dayInformation .= '}';
+        echo $dayInformation;
+    }
 ?>

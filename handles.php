@@ -1,3 +1,7 @@
+<?php
+    require('authentication.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,6 +89,5 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/responsive-calendar.min.js"></script>
 <script src="js/bootstrap.datetimepicker.min.js"></script>
-<script src="js/signin.js"></script>
 <script src="js/jquery.validate.min.js"></script>
 

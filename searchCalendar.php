@@ -1,4 +1,8 @@
 
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,9 +20,10 @@
 ?>
 <div class="container">
   <div class="row" style="margin-top: 60px">
-    <?php
-    if(isset($_GET['searchkey']))
+<?php
+    if(isset($_SESSION['USER_ID']) && isset($_GET['searchkey']))
     {
+        $userid = $_SESSION['USER_ID'];
         $dbLink = pg_connect("host=127.0.0.1 dbname=dev1 user=postgres") 
                     or die("Unable to connect to database");
 
@@ -26,7 +31,7 @@
 
         $query  = "SELECT * FROM (SELECT *, to_tsvector(title) || to_tsvector(location) || 
                                             to_tsvector(description) AS document 
-                   FROM events)event_search WHERE 
+                   FROM events WHERE userid=".$userid.")event_search WHERE 
                    event_search.document @@ to_tsquery('".$searchkey."')";
 
         $result = pg_query($dbLink, $query);
@@ -115,7 +120,6 @@
 
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="js/signin.js"></script>
 <script src="js/deleteEvent.js"></script>
 
 <script type="text/javascript">

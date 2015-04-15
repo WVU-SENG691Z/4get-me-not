@@ -1,18 +1,22 @@
 
 <?php
-    if(isset($_GET['day']))
+    session_start();
+
+    if(isset($_SESSION['USER_ID']) && isset($_POST['day']))
     {
+        $userid = $_SESSION['USER_ID'];
+
         $dbLink = pg_connect("host=127.0.0.1 dbname=dev1 user=postgres") 
                     or die("Unable to connect to database");
 
-        $day = $_GET['day'];
+        $day = $_POST['day'];
 
 /*        $query  = "SELECT handles.title, handles, events.event_time_start, events.location, 
                    events.event_time_end, eventid FROM handles, events WHERE 
                    handles.handle_id=events.handle_id AND '".$day."' BETWEEN 
                    date_trunc('day', event_time_start) and date_trunc('day', event_time_end);";
 */
-        $query  = "SELECT * FROM events WHERE '".$day."' BETWEEN ";
+        $query  = "SELECT * FROM events WHERE userid=".$userid." AND '".$day."' BETWEEN ";
         $query .= "date_trunc('day', event_time_start) and date_trunc('day', event_time_end);";
 
         $result = pg_query($dbLink, $query);
