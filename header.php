@@ -28,9 +28,13 @@
               </li>
             </ul>
             <form class="navbar-form navbar-left" role="search" action="searchCalendar.php" method="GET">
-              <div class="form-group">
-                <input type="text" name="searchkey" class="form-control" />
-              </div> <button type="submit" class="btn btn-default">Search Tasks</button>
+              <div class="input-group">
+                <input type="text" name="searchkey" class="form-control" 
+                       placeholder="Search Tasks/Events"/>
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-default" type="button">Go!</button>
+                </span>
+              </div>
             </form>';
     }
 ?>
@@ -53,8 +57,7 @@
         {
             $row = pg_fetch_object($result);
 
-            echo '    <a href="signout.php" '.
-                        'class="navbar-btn btn btn-default">Sign Out</a>'.
+            echo '    <a href="signout.php" class="navbar-btn btn btn-default">Sign Out</a>'.
                  '    <p class="navbar-text">Hi, '.$row->username.'</p>';
         }
         else //may be a problem, no information found for user id
@@ -65,8 +68,8 @@
     }
     else
     {
-        echo '    <a href="signin.php" style="background-color: #1E90FF; color: white"'.
-                         'class="navbar-btn btn btn-default">Sign In</a>'.
+        echo '    <a href="signin.php" '.
+                         'class="navbar-btn btn btn-primary">Sign In</a>'.
              '    <a href="register.php" style="background-color: #D3D3D3;"'.
                          'class="navbar-btn btn btn-default">Create Account</a>';
     }
