@@ -22,8 +22,7 @@ $(document).on("click", "#deleteEventConfirm", function (event)
         {
           type:'POST',
           url:'deleteEvent.php',
-          data: { userid: 123,
-                  eventid: eventToDelete },
+          data: { eventid: eventToDelete },
           fail: function (response)
           {
             alert("Failed to create new event "+response);

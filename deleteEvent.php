@@ -1,13 +1,14 @@
 <?php
+    session_start();
     header('Content-type: application/json');
 
-    if(isset($_POST['eventid']) && isset($_POST['userid']))
+    if(isset($_POST['eventid']) && isset($_SESSION['USER_ID']))
     {
         $responseArray = array();
         $dbLink = pg_connect("host=127.0.0.1 dbname=dev1 user=postgres") 
                     or die("Unable to connect to database");
 
-        $userid = $_POST['userid'];
+        $userid = $_SESSION['USER_ID'];
         $eventid = $_POST['eventid'];
 
         $result = pg_query_params($dbLink, 'DELETE FROM events WHERE userid=$1 and eventid=$2',
