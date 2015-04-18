@@ -15,8 +15,8 @@
 		$eventEnd = $eventStart; 
 		
         $result = 
-            pg_query_params($dbLink, 'INSERT INTO events (userid, handle_id, event_time_start, event_time_end) VALUES($1, $2, NOW() - INTERVAL \''.$3.' minutes\', NOW() - INTERVAL \''.$4.' minutes\')', 
-                            array($userid, $handle_id, $eventStart, $eventEnd));
+            pg_query_params($dbLink, 'INSERT INTO events (userid, handle_id, event_time_start, event_time_end) VALUES($1, $2, NOW() - INTERVAL \''.  $eventStart .' minutes\', NOW() - INTERVAL \''.  $eventStart .' minutes\')', 
+                            array($userid, $handle_id));
 
         if(!$result) 
         {

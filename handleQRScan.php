@@ -31,13 +31,31 @@ $row = pg_fetch_object($result)
 ?>
 
 <form action="tagEvent.php" method="post">
-	<input name="EventName" type="text" disabled="true" value="<?php echo $row->title; ?>"/><br />
+	<input name="EventName" class="btn" type="text" disabled="true" value="<?php echo $row->title; ?>"/><br />
 	<input name="handle_id" type="hidden" value="<?php echo $row->handle_id; ?>">
-	<input name="TimeAdjustment" type="radio" value"Now">Now
-	<input name="TimeAdjustment" type="radio" value"-30">30 Minutes Ago
-	<input name="TimeAdjustment" type="radio" value"-60">1 Hour Ago
-	<input name="TimeAdjustment" type="radio" value"-120">2 Hour Ago<br />
-	<input type="submit" value="Add Event"/>
+	
+	<!--<input name="TimeAdjustment" type="radio" value="0">Now
+	<input name="TimeAdjustment" type="radio" value="30">30 Minutes Ago
+	<input name="TimeAdjustment" type="radio" value="60">1 Hour Ago
+	<input name="TimeAdjustment" type="radio" value="120">2 Hour Ago<br />-->
+	
+	<div class="btn-group" data-toggle="buttons">
+		  <label class="btn btn-primary active">
+			<input type="radio" name="TimeAdjustment" value="0" id="a0" autocomplete="off" checked> Now
+		  </label>
+		  <label class="btn btn-primary">
+			<input type="radio" name="TimeAdjustment" value="30" id="a30" autocomplete="off"> 30 Minutes Ago
+		  </label>
+		  <label class="btn btn-primary">
+			<input type="radio" name="TimeAdjustment" value="60" id="a60" autocomplete="off"> 1 Hour Ago
+		  </label>
+		  <label class="btn btn-primary">
+			<input type="radio" name="TimeAdjustment" value="120" id="a120" autocomplete="off"> 2 Hours Ago
+		  </label>
+	</div>
+	
+	<br />
+	<input class="btn" type="submit" value="Add Event"/>
 </form>
 
 
