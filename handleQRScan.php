@@ -49,13 +49,10 @@ $row = pg_fetch_object($result)
 		  <label class="btn btn-primary">
 			<input type="radio" name="TimeAdjustment" value="60" id="a60" autocomplete="off"> 1 Hour Ago
 		  </label>
-		  <label class="btn btn-primary">
-			<input type="radio" name="TimeAdjustment" value="120" id="a120" autocomplete="off"> 2 Hours Ago
-		  </label>
 	</div>
 	
 	<br />
-	<input class="btn" type="submit" value="Add Event"/>
+	<input class="btn btn-info" type="submit" value="Add Event"/>
 </form>
 
 
