@@ -54,7 +54,28 @@
       </div>
     </div>
     <div class="col-md-6" style="margin-top: -20px">
-      <h2>Events</h2>
+      <h2>Events (<?php  
+    session_start();
+
+    if(isset($_SESSION['USER_ID']))
+    {
+        $userid = $_SESSION['USER_ID'];
+
+        $dbLink = pg_connect("host=127.0.0.1 dbname=dev1 user=postgres")
+                    or die("Unable to connect to database");
+
+        $query  = "SELECT COUNT(userid) FROM events WHERE userid=".$userid;
+
+        $result = pg_query($dbLink, $query);
+
+        if(pg_num_rows($result) > 0)
+        {
+            $row = pg_fetch_object($result);
+            echo $row->count;
+        }
+        else
+            echo 0;
+    }?>)</h2>
       <div id="eventlist"> </div>
     </div>
   </div>
