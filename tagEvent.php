@@ -1,6 +1,6 @@
 <?php
     session_start();
-    header('Content-type: application/json');
+    //header('Content-type: application/json');
 
    if(true)
     {
@@ -27,11 +27,13 @@
         }
         else
         {
-            $responseArray['status'] = 'success';
+            //$responseArray['status'] = 'success';
             $responseArray['data'] = '<div class="alert alert-success alert-sm" role="alert">'.
-                                     'Successfully added your new event!</div>';
+                                     'Successfully added your new event!</div>
+									 
+									 <FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>';
         }
 
-        echo json_encode($responseArray);
+        echo $responseArray['data'];
     }
 ?>
