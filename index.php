@@ -14,9 +14,10 @@
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
   <style>
     .jumbotron {
+      background-color: ;
       height: 600px;
       background: url('img/calendar_1600.jpg') center top no-repeat;
-      background-size: cover; 
+      background-size: cover;
     }
   </style>
 
@@ -32,101 +33,103 @@
 <?php
   require('header.php');
 ?>
-<div class="jumbotron">
+<div class="jumbotron" style="margin-bottom: 0px;">
   <div class="container" style="color: black; transform: translateY(30%); ">
     <h1 style="">4get-me-not</h1>
     <div>Your go to task/event organizer. Put me in your pocket.</div><br>
-    <p>
-      <a class="btn btn-primary btn-large" href="#">Learn more</a>
-    </p> 
+    <p><a class="btn btn-primary btn-large" href="#">Learn more</a></p> 
   </div>
 </div>
+
+<div style="height: 220px;">
 <div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h2>
-        Features
-      </h2>
-    </div>
+  <div class="row" style="margin-top: 60px;">
+    <center>
+      <h3>Get notifications for your upcoming events</h3>
+      <a class="btn btn-primary btn-large" style="margin-top: 20px;" 
+         href="#">See how we keep you in the know</a>
+    </center>
   </div>
-  <div class="row">
-    <div class="col-md-4">
-      <h3>
-       Task Reminders
-      </h3>
-      <p>
-         We can remind you of a task and let you blah blah do stuff blah blah
-       </p>
-       <p>
-        <a class="btn btn-primary" href="#">View details</a>
-       </p>
-    </div>
-<!--  </div>
-  <div class="row"> -->
-    <div class="col-md-4">
-      <h3>
-       Event Notifications
-      </h3>
-      <p>
-        Get notified of upcoming events! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
-      <p>
-        <a class="btn btn-primary" href="#">View details</a>
-      </p>
-    </div>
-<!--  </div>
-  <div class="row"> -->
-    <div class="col-md-4">
-      <h3>
-        QR Code Scanning
-      </h3>
-      <p>
-        Scan your QR code stickers to get information on your task or event. The stickers can be blah some other text with blah blah stuff all over the blah. 
-      </p>
-      <p>
-        <a class="btn btn-primary" href="#">View details</a>
-      </p>
-    </div>
-<!--    <div class="col-md-3 column">
+  <hr/>
+</div>
+</div>
+<div class="container">
+  <div class="row" style="margin-top: 30px">
+    <div class="col-md-3">
       <img src="img/qrcode.jpg" class="img-responsive" alt="QR image">
-    </div> -->
-  </div>
-</div>
-<hr/>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h2>
-        More Content
-      </h2>
     </div>
-  </div>
-   <div class="row">
     <div class="col-md-4">
-      <h3>
-       Stuff
-      </h3>
-      <p>
-         We can remind you of a task and let you blah blah do stuff blah blah
-      </p>
-    </div>
-     <div class="col-md-4">
-      <h3>
-       More Stuff
-      </h3>
-      <p>
-         wefgjbgl;ksbgf stg wteg wethwtreh wthrethwer hhwerth etg
-      </p>
+      <h3>QR Code Scanning</h3>
+      <p> Generate and scan your own QR Codes for your tasks</p>
     </div>
   </div>
 </div>
 
-<br><br><br>
+<div style="background: url('img/reminder.jpg') center top no-repeat; 
+            background-size: cover; height: 450px;">
+<div class="container">
+  <div class="row" style="margin-top: 30px">
+    <div class="col-md-4">
+      <h3>Task Reminders</h3>
+      <p>We can remind you of an upcoming task so you aren't overwhelmed with your busy schedule</p>
+    </div>
+  </div>
+</div>
+</div>
+<div style="height: 700px; background-color: #286090;">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" style="margin-top: 60px; color: white;">
+      <h1>Sign in to get started</h1>
+      <p>Start integrating your tasks into your life!</p>
+       <a class="btn btn-default" href="signin.php">Sign in</a>
+    </div>
+    <div class="col-md-offset-2 col-md-4">
+        <img src="img/4get-me-not_phone.png" style="height: 650px;" class="img-responsive" >
+    </div>
+  </div>
+</div>
+</div>
+
+<div style="background-color: #EDEDED; height: 300px;">
+<div class="container">
+  <div class="row" style="margin-top: 60px;">
+    <div class="col-md-4">
+      <h3>Email Notifications</h3>
+      <p>Notifications for upcoming events and tasks on your schedule</p>
+    </div>
+     <div class="col-md-4">
+      <h3>Phone Alerts</h3>
+      <p>For stuff</p>
+    </div>
+    <div class="col-md-4">
+      <h3>Text Reminders</h3>
+      <p>Yep, we have that too</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div style="background-color: #F9F9F9; height: 250px;">
+  <div class="container">
+    <center>
+      <div class="row" style="margin-top: 60px;">
+        <h3>Start saving time and start being on time.</h3>
+      </div>
+      <div class="row" style="margin-top: 20px;">
+        <a href="register.php" class="btn btn-info btn-lg">Create Your Account</a>
+      </div>
+    </center>
+  </div>
+</div>
+
 
 <footer>
   <div class="container">
   <hr/>
     <div class="row" style="margin-top: -20px; margin-bottom: -20px;">
+      <a class="pull-left" style="margin-left: 20px">About</a>
+      <a class="pull-left" style="margin-left: 20px">Careers</a>
       <div class="pull-right" style="margin-right: 20px">
         <h5>
           &copy; 2015 The Iterators
