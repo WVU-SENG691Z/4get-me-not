@@ -74,7 +74,7 @@
         if($success == true)
         {
             echo '<div class="row">'.
-             '<div class="alert alert-dismissible alert-danger alert-sm" role="alert">'.
+             '<div class="alert alert-dismissible alert-success alert-sm" role="alert">'.
              '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'.
              '<span aria-hidden="true">&times;</span></button>'.
              '<span class="glyphicon" aria-hidden="true"></span>'.
